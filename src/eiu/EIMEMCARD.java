@@ -1,4 +1,4 @@
-package lab3;
+package eiu;
 
 import java.io.PrintWriter;
 import java.util.Scanner;

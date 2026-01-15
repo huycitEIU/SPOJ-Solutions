@@ -1,15 +1,29 @@
 package eiu;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class EIBANKRATE {
 
+    public static void main(String[] args) {
+
+        FastIO fastIO = new FastIO();
+
+        double basedMoney = fastIO.nextDouble();
+        int months = fastIO.nextInt();
+
+        System.out.println(basedMoney + basedMoney * 0.0075 * months);
+    }
+
+
     static class FastIO {
+        // --- INPUT ---
         private InputStream is = System.in;
-        private byte[] inbuf = new byte[1 << 24]; // 16MB buffer
+        private byte[] inbuf = new byte[1 << 24]; // 16MB Input Buffer
         private int lenbuf = 0, ptrbuf = 0;
 
         private int readByte() {
@@ -100,15 +114,15 @@ public class EIBANKRATE {
                 b = readByte();
             }
         }
-    }
 
-    public static void main(String[] args) {
+        // --- OUTPUT ---
+        private final PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        FastIO fastIO = new FastIO();
+        public void print(Object o) { out.print(o); }
+        public void println(Object o) { out.println(o); }
+        public void printf(String format, Object... args) { out.printf(format, args); }
 
-        double basedMoney = fastIO.nextDouble();
-        int months = fastIO.nextInt();
-
-        System.out.println(basedMoney + basedMoney * 0.0075 * months);
+        // Bắt buộc gọi hàm này khi kết thúc chương trình
+        public void close() { out.flush(); out.close(); }
     }
 }

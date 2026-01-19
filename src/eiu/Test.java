@@ -43,5 +43,6 @@ public class Test {
         }
         System.out.printf("%.2f\n", totalSalaryOH / totalOH);
         System.out.printf("%.2f", totalSalaryOT / totalOT);
+        // add here
     }
 }

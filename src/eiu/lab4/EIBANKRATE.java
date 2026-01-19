@@ -1,4 +1,4 @@
-package eiu;
+package eiu.lab4;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -7,42 +7,18 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class EIGROSS2 {
+public class EIBANKRATE {
 
     public static void main(String[] args) {
 
-        FastIO io = new FastIO();
+        FastIO fastIO = new FastIO();
 
-        long netIcome = io.nextLong();
+        double basedMoney = fastIO.nextDouble();
+        int months = fastIO.nextInt();
 
-        io.println(calculate(netIcome));
-        io.close();
-
+        System.out.println(basedMoney + basedMoney * 0.0075 * months);
     }
 
-    static long calculate(long netIncome) {
-
-        if (netIncome <= 11_000_000) return netIncome;
-
-        long grossSalary = 11_000_000;
-        long taxableIncome = netIncome - 11_000_000;
-
-        long[] levels = { 4_750_000, 4_500_000, 6_800_000, 11_200_000, 15_000_000, 19_600_000 };
-        long[] rates = { 95, 90, 85, 80, 75, 70 };
-
-        for (int i = 0; i < levels.length; i++) {
-            if (taxableIncome >= levels[i]) {
-                grossSalary += levels[i] * 100 / rates[i];
-                taxableIncome -= levels[i];
-            } else {
-                grossSalary += (taxableIncome * 100 + rates[i] / 2) / rates[i];
-                return grossSalary;
-            }
-        }
-        grossSalary += (taxableIncome * 100 + 65 / 2) / 65;
-
-        return grossSalary;
-    }
 
     static class FastIO {
         // --- INPUT ---

@@ -1,4 +1,4 @@
-package eiu;
+package eiu.lab4;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -7,20 +7,35 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class EIGROSS {
+public class EIDINRATE {
+
+
     public static void main(String[] args) {
-        FastIO io = new FastIO();
-
-        double income;
-        int employees = io.nextInt();
-
-        while (employees-- > 0) {
-            income = io.nextDouble();
-            io.println(income / 9.0);
+        FastIO fastIO = new FastIO();
+        int testcase = fastIO.nextInt();
+        double N, L, M;
+        while (testcase-- > 0) {
+            N = fastIO.nextDouble();
+            L = fastIO.nextDouble();
+            M = fastIO.nextDouble();
+            fastIO.println(calculate(N, L, M));
         }
-
-        io.close();
+        fastIO.close();
     }
+
+    /**
+     *
+     * @param deposit the base money
+     * @param interestRate annual interest rate
+     * @param targetAmount the target money after years
+     * @return how many years to get the target or more
+     */
+    static int calculate(double deposit, double interestRate, double targetAmount) {
+        double years = (Math.log(targetAmount) - Math.log(deposit)) / (Math.log(1 + interestRate / 100.0));
+        return (int) Math.ceil(years);
+    }
+
+
     static class FastIO {
         // --- INPUT ---
         private InputStream is = System.in;
@@ -126,4 +141,5 @@ public class EIGROSS {
         // Bắt buộc gọi hàm này khi kết thúc chương trình
         public void close() { out.flush(); out.close(); }
     }
+
 }

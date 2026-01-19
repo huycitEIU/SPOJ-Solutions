@@ -1,4 +1,4 @@
-package eiu;
+package eiu.lab3;
 
 import java.util.Scanner;
 

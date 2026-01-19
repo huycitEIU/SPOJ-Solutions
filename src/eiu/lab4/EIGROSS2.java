@@ -1,4 +1,4 @@
-package eiu;
+package eiu.lab4;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -7,34 +7,42 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class EIDINRATE {
-
+public class EIGROSS2 {
 
     public static void main(String[] args) {
-        FastIO fastIO = new FastIO();
-        int testcase = fastIO.nextInt();
-        double N, L, M;
-        while (testcase-- > 0) {
-            N = fastIO.nextDouble();
-            L = fastIO.nextDouble();
-            M = fastIO.nextDouble();
-            fastIO.println(calculate(N, L, M));
+
+        FastIO io = new FastIO();
+
+        long netIcome = io.nextLong();
+
+        io.println(calculate(netIcome));
+        io.close();
+
+    }
+
+    static long calculate(long netIncome) {
+
+        if (netIncome <= 11_000_000) return netIncome;
+
+        long grossSalary = 11_000_000;
+        long taxableIncome = netIncome - 11_000_000;
+
+        long[] levels = { 4_750_000, 4_500_000, 6_800_000, 11_200_000, 15_000_000, 19_600_000 };
+        long[] rates = { 95, 90, 85, 80, 75, 70 };
+
+        for (int i = 0; i < levels.length; i++) {
+            if (taxableIncome >= levels[i]) {
+                grossSalary += levels[i] * 100 / rates[i];
+                taxableIncome -= levels[i];
+            } else {
+                grossSalary += (taxableIncome * 100 + rates[i] / 2) / rates[i];
+                return grossSalary;
+            }
         }
-        fastIO.close();
-    }
+        grossSalary += (taxableIncome * 100 + 65 / 2) / 65;
 
-    /**
-     *
-     * @param deposit the base money
-     * @param interestRate annual interest rate
-     * @param targetAmount the target money after years
-     * @return how many years to get the target or more
-     */
-    static int calculate(double deposit, double interestRate, double targetAmount) {
-        double years = (Math.log(targetAmount) - Math.log(deposit)) / (Math.log(1 + interestRate / 100.0));
-        return (int) Math.ceil(years);
+        return grossSalary;
     }
-
 
     static class FastIO {
         // --- INPUT ---
@@ -141,5 +149,4 @@ public class EIDINRATE {
         // Bắt buộc gọi hàm này khi kết thúc chương trình
         public void close() { out.flush(); out.close(); }
     }
-
 }

@@ -1,4 +1,4 @@
-package eiu;
+package eiu.lab4;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -7,19 +7,20 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-public class EIBANKRATE {
-
+public class EIGROSS {
     public static void main(String[] args) {
+        FastIO io = new FastIO();
 
-        FastIO fastIO = new FastIO();
+        double income;
+        int employees = io.nextInt();
 
-        double basedMoney = fastIO.nextDouble();
-        int months = fastIO.nextInt();
+        while (employees-- > 0) {
+            income = io.nextDouble();
+            io.println(income / 9.0);
+        }
 
-        System.out.println(basedMoney + basedMoney * 0.0075 * months);
+        io.close();
     }
-
-
     static class FastIO {
         // --- INPUT ---
         private InputStream is = System.in;

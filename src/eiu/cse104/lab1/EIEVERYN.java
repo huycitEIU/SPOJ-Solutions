@@ -8,7 +8,8 @@ public class EIEVERYN {
     public static void main(String[] args) {
 
         int t = scanner.nextInt();
-        int m, n;
+        int m;
+        int n;
 
         while (t-- > 0) {
             m = scanner.nextInt();

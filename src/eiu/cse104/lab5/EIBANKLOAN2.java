@@ -23,13 +23,7 @@ public class EIBANKLOAN2 {
 
         double ratePerMonth = interestRate / 12.0;
 
-        while (loan > 0.0) {
-            loan += loan * ratePerMonth;
-            loan -= payPerMonth;
-            months++;
-        }
-
-        return months;
+        return (long) Math.ceil(Math.log(payPerMonth / (payPerMonth - loan * ratePerMonth)) / Math.log(1 + ratePerMonth));
     }
 
     static class FastIO {

@@ -9,7 +9,9 @@ import java.util.InputMismatchException;
 
 public class EIBANKLOAN2 {
     public static void main(String[] args) {
+
         FastIO io = new FastIO();
+
         double loan = io.nextDouble();
         double payPerMonth = io.nextDouble();
         double interestRate = io.nextDouble() / 100.0;
